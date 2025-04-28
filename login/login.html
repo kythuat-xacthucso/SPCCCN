@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Đăng nhập</h2>
+        <form id="loginForm" novalidate>
+            <div class="form-group">
+                <label for="username">Số điện thoại hoặc Email</label>
+                <span class="error-message" id="usernameError"></span>
+                <input type="text" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <span class="error-message" id="passwordError"></span>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="login-btn">Đăng nhập</button>
+            </div>
+        </form>
+        <div class="forgot-password">
+            <a href="../forgotPassword/forgotPassword.html">Quên mật khẩu?</a>
+        </div>
+        <div class="signup-link">
+            <a href="../register/register.html">Đăng ký tài khoản</a>
+        </div>
+        <div class="social-login">
+            <p>Hoặc đăng nhập bằng:</p>
+            <div class="social-buttons">
+                <button class="social-btn google-btn">Google</button>
+                <button class="social-btn zalo-btn">Zalo</button>
+                <button class="social-btn facebook-btn">Facebook</button>
+            </div>
+        </div>
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>

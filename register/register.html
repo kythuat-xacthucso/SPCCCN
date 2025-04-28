@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+    <div class="register-container">
+        <h2>Đăng ký tài khoản</h2>
+        <form id="registerForm" novalidate>
+            <div class="form-group">
+                <label for="username">Số điện thoại hoặc Email</label>
+                <span class="error-message" id="usernameError"></span>
+                <input type="text" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <span class="error-message" id="passwordError"></span>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Xác nhận mật khẩu</label>
+                <span class="error-message" id="confirmPasswordError"></span>
+                <input type="password" id="confirmPassword" name="confirmPassword">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="register-btn">Đăng ký</button>
+            </div>
+        </form>
+        <div class="back-link">
+            <a href="../login/login.html" id="backBtn">Quay lại</a>
+        </div>
+    </div>
+    <script src="register.js"></script>
+</body>
+</html>
