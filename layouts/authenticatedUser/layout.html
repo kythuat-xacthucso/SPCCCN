@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authenticated User Layout</title>
+    <link rel="stylesheet" href="layout.css">
+</head>
+<body>
+    <div class="layout-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <img src="https://xacthucso.s3.ap-southeast-1.amazonaws.com/1b210bbb-9501-11ef-9602-f2202b293748" alt="Logo" class="logo">
+                <h1 class="system-name">Quản lý truy xuất nguồn gốc SPCCCN</h1>
+            </div>
+            <div class="header-right">
+                <!-- Desktop: Avatar + Dropdown -->
+                <div class="user-profile">
+                    <img src="https://xacthucso.s3.ap-southeast-1.amazonaws.com/1b210bbb-9501-11ef-9602-f2202b293748" alt="Avatar" class="avatar">
+                    <span class="username">Tên người dùng</span>
+                    <span class="dropdown-icon">▼</span>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">Thông tin tài khoản</a>
+                        <a href="#" class="dropdown-item">Đăng xuất</a>
+                    </div>
+                </div>
+                <!-- Mobile: Hamburger Icon -->
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-user mobile-only">
+                <img src="https://xacthucso.s3.ap-southeast-1.amazonaws.com/1b210bbb-9501-11ef-9602-f2202b293748" alt="Avatar" class="avatar">
+                <span class="username">Tên người dùng</span>
+            </div>
+            <ul class="menu">
+                <li><a href="#" data-page="index" class="active">Trang chủ</a></li>
+                <li><a href="#" data-page="register">Đăng ký Chủ thể SPCCCN</a></li>
+                <li><a href="#" data-page="detail">Theo dõi hồ sơ đăng ký</a></li>
+                <!-- Mobile-only menu items -->
+                <li class="mobile-only"><a href="#">Thông tin tài khoản</a></li>
+                <li class="mobile-only"><a href="#">Đăng xuất</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content-area" id="content-area">
+            <!-- Nội dung động sẽ được tải vào đây -->
+        </main>
+    </div>
+
+    <script src="layout.js"></script>
+</body>
+</html>

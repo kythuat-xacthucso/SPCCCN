@@ -3,19 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // Redirect to login.html immediately when the page is opened
+        window.onload = function() {
+            window.location.href = 'public/login/login.html';
+        };
+    </script>
     <title>Trang chủ</title>
     <link rel="stylesheet" href="index.css">
-</head>
+<head>
 <body>
-    <div class="container">
-        <nav class="navbar">
-            <button class="nav-btn" onclick="location.href='./registrationCompany/register.html'">Đăng ký</button>
-            <button class="nav-btn" onclick="location.href='./detailRegistrationCompany/detail.html'">Theo dõi hồ sơ</button>
-        </nav>
-        <main class="main-content">
-            <h1>Trang chủ</h1>
-            <p>Chào mừng bạn đến với hệ thống quản lý sản phẩm chứng chỉ chứng nhận.</p>
-        </main>
-    </div>
 </body>
 </html>
