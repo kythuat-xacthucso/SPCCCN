@@ -1,0 +1,72 @@
+<div class="form-container">
+    <h1>Gửi hồ sơ đăng ký Chủ thể SPCCCN</h1>
+    <form id="registrationForm" novalidate>
+        <div class="form-group">
+            <label for="entityName">Tên chủ thể <span class="required">*</span></label>
+            <span class="error-message" id="entityNameError"></span>
+            <input type="text" id="entityName" name="entityName" maxlength="128" placeholder="Nhập tên chủ thể"
+                title="Tên chủ thể không được quá 128 ký tự">
+        </div>
+        <div class="form-group">
+            <label>Loại hình <span class="required">*</span></label>
+            <span class="error-message" id="entityTypeError"></span>
+            <div class="radio-group">
+                <div class="radio-item">
+                    <input type="radio" id="entityTypeCaNhan" name="entityType" value="Cá nhân">
+                    <label for="entityTypeCaNhan">Cá nhân</label>
+                </div>
+                <div class="radio-item">
+                    <input type="radio" id="entityTypeToChuc" name="entityType" value="Tổ chức" checked>
+                    <label for="entityTypeToChuc">Tổ chức</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="taxID">Mã số thuế <span class="required">*</span></label>
+            <span class="error-message" id="taxIDError"></span>
+            <input type="text" inputmode="numeric" id="taxID" name="taxID" maxlength="13"
+                placeholder="Nhập mã số thuế" title="Mã số thuế phải là số và không quá 13 ký tự"
+                oninput="this.value=this.value.replace(/[^0-9]/g, '').slice(0,this.maxLength)">
+        </div>
+        <div class="form-group">
+            <label for="representativeName">Tên người đại diện <span class="required">*</span></label>
+            <span class="error-message" id="representativeNameError"></span>
+            <input type="text" id="representativeName" name="representativeName" maxlength="128"
+                placeholder="Nhập tên người đại diện" title="Tên người đại diện không được quá 128 ký tự">
+        </div>
+        <div class="form-group">
+            <label for="representativePhone">Số điện thoại người đại diện <span class="required">*</span></label>
+            <span class="error-message" id="representativePhoneError"></span>
+            <input type="text" inputmode="numeric" id="representativePhone" name="representativePhone"
+                maxlength="10" placeholder="Nhập số điện thoại người đại diện"
+                title="Số điện thoại người đại diện phải là số và không quá 10 ký tự"
+                oninput="this.value=this.value.replace(/[^0-9]/g, '').slice(0,this.maxLength)">
+        </div>
+        <div class="form-group">
+            <label for="managerName">Tên người quản lý <span class="required">*</span></label>
+            <span class="error-message" id="managerNameError"></span>
+            <input type="text" id="managerName" name="managerName" maxlength="128"
+                placeholder="Nhập tên người quản lý" title="Tên người quản lý không được quá 128 ký tự">
+        </div>
+        <div class="form-group">
+            <label for="managerZalo">Số điện thoại Zalo quản lý <span class="required">*</span></label>
+            <span class="error-message" id="managerZaloError"></span>
+            <input type="text" inputmode="numeric" id="managerZalo" name="managerZalo" maxlength="10"
+                placeholder="Nhập số điện thoại Zalo quản lý"
+                title="Số điện thoại Zalo quản lý phải là số và không quá 10 ký tự"
+                oninput="this.value=this.value.replace(/[^0-9]/g, '').slice(0,this.maxLength)">
+        </div>
+        <div class="form-group">
+            <label for="businessLicense">Giấy phép kinh doanh <span class="required">*</span></label>
+            <span class="error-message" id="businessLicenseError"></span>
+            <div class="custom-file-input">
+                <input type="file" id="businessLicense" name="businessLicense" accept=".pdf,.doc,.docx,image/*">
+                <label for="businessLicense" class="file-label">Chọn tệp</label>
+                <span id="fileName" class="file-name">Chưa chọn tệp</span>
+            </div>
+        </div>
+        <button type="submit" class="submit-button">Gửi hồ sơ</button>
+        <p class="required-label"><span class="required">*</span> Bắt buộc</p>
+    </form>
+    <div id="resultMessage"></div>
+</div>
