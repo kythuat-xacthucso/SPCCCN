@@ -11,7 +11,7 @@
     padding: 32px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.5s ease-in-out;
-    width: 100%; /* Chiếm toàn bộ width của content-area */
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -30,32 +30,66 @@ h1 {
     margin-bottom: 24px;
 }
 
-/* Detail Content */
-.detail-content {
+/* Detail Wrapper */
+.detail-wrapper {
     display: flex;
-    flex-direction: column;
     gap: 20px;
+    margin-top: 20px;
 }
 
-.detail-item {
+/* Main Content (70%) */
+.detail-main {
+    flex: 7;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 16px;
 }
 
-.detail-item label {
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
-    min-width: 120px;
+/* Tab Navigation */
+.tab-nav {
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 8px;
 }
 
-.detail-item span {
+.tab-btn {
+    padding: 8px 16px;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
     font-size: 14px;
-    color: #666;
+    transition: background 0.3s;
 }
 
-/* Description Content */
+.tab-btn.active {
+    background: #4a90e2;
+    color: white;
+}
+
+.tab-btn:hover {
+    background: #e0e0e0;
+}
+
+.tab-content {
+    padding: 16px 0;
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+/* Tab Content Spacing */
+.tab-pane p,
+.tab-pane .description-content {
+    margin-bottom: 16px;
+}
+
 .description-content {
     border: 1px solid #e0e0e0;
     border-radius: 8px;
@@ -65,53 +99,123 @@ h1 {
     color: #333;
 }
 
-/* Image Section */
-.image-section {
+/* Group Box Styling */
+.group-box {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    background: #f9f9f9;
+    margin-bottom: 16px;
+}
+
+.group-box h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+/* Category List Styling */
+.category-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.category-list li {
+    font-size: 14px;
+    color: #333;
+    padding: 4px 0;
+}
+
+.category-list li strong {
+    color: #4a90e2;
+    font-weight: 500;
+}
+
+/* Table Styles */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 8px;
+    border: 1px solid #e0e0e0;
+    text-align: left;
+    font-size: 14px;
+}
+
+.table th {
+    background: #f9f9f9;
+    font-weight: 500;
+}
+
+/* QR Code */
+.qr-code {
+    width: 100px;
+    height: 100px;
+    margin-top: 8px;
+}
+
+/* Article Content */
+.article-content {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    background: #f9f9f9;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Sidebar (30%) */
+.detail-sidebar {
+    flex: 3;
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
+.sidebar-section {
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.sidebar-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #333;
+}
+
 .image-preview {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 8px;
 }
 
-.image-item {
-    position: relative;
+.image-preview img {
     width: 100px;
     height: 100px;
-    cursor: pointer;
-}
-
-.image-item img {
-    width: 100%;
-    height: 100%;
     object-fit: cover;
-    border-radius: 8px;
-    border: 2px solid transparent;
+    border-radius: 4px;
 }
 
-.image-item:hover img {
-    border-color: #4a90e2;
+.status-info p {
+    font-size: 14px;
+    color: #666;
+    margin: 4px 0;
 }
 
-.image-item input[type="checkbox"] {
-    position: absolute;
-    top: 4px;
-    left: 4px;
-}
-
-/* Image Actions */
-.image-actions {
-    display: flex;
-    gap: 12px;
+.status-info span {
+    font-weight: 500;
 }
 
 /* Action Buttons */
 .action-btn {
-    flex: 1; /* Đảm bảo các nút có kích thước đều nhau */
+    flex: 1;
     padding: 10px 16px;
     background: #4a90e2;
     border: none;
@@ -149,80 +253,42 @@ h1 {
 }
 
 .edit-button:hover {
-    background: #d4ac0d;
-}
-
-/* Modal for Image Preview */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.modal.active {
-    display: flex; /* Đảm bảo modal hiển thị */
-}
-
-.modal-content {
-    position: relative;
-    max-width: 90%;
-    max-height: 90%;
-}
-
-.modal-content img {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.close-modal {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
+    background: #d4ac0f;
 }
 
 /* Responsive Design */
-@media (max-width: 600px) {
-    .detail-container {
-        padding: 20px;
+@media (max-width: 768px) {
+    .detail-wrapper {
+        flex-direction: column;
     }
 
-    h1 {
-        font-size: 20px;
+    .detail-main,
+    .detail-sidebar {
+        flex: none;
+        width: 100%;
     }
 
-    .detail-item label {
-        font-size: 13px;
-        min-width: 100px;
+    .tab-nav {
+        flex-wrap: wrap;
     }
 
-    .detail-item span {
-        font-size: 13px;
+    .tab-btn {
+        flex: 1;
+        margin-bottom: 8px;
     }
 
-    .image-item {
+    .image-preview img {
         width: 80px;
         height: 80px;
     }
 
-    .action-btn {
-        padding: 8px 12px;
-        font-size: 13px;
+    .qr-code {
+        width: 80px;
+        height: 80px;
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
     .detail-container {
         padding: 16px;
     }
@@ -231,8 +297,18 @@ h1 {
         font-size: 18px;
     }
 
-    .image-item {
-        width: 70px;
-        height: 70px;
+    .tab-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+
+    .image-preview img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .qr-code {
+        width: 60px;
+        height: 60px;
     }
 }

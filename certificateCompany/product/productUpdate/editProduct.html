@@ -1,47 +1,171 @@
 <div class="form-container">
     <h1>Sửa sản phẩm</h1>
-    <form id="editProductForm">
-        <!-- Tên sản phẩm -->
-        <div class="form-group">
-            <label for="productName">Tên sản phẩm <span class="required">*</span></label>
-            <input type="text" id="productName" name="productName" placeholder="Nhập tên sản phẩm" required>
-            <div class="error-message" id="productNameError">Tên sản phẩm không được để trống.</div>
-        </div>
-
-        <!-- Mô tả -->
-        <div class="form-group">
-            <label for="productDescription">Mô tả <span class="required">*</span></label>
-            <div id="productDescription" class="description-editor"></div>
-            <div class="error-message" id="productDescriptionError">Mô tả không được để trống.</div>
-        </div>
-
-        <!-- Ảnh -->
-        <div class="form-group">
-            <label>Ảnh sản phẩm (Tối đa 10 ảnh)</label>
-            <div class="custom-file-input">
-                <input type="file" id="productImages" accept="image/*" multiple>
-                <label for="productImages" class="file-label">Chọn ảnh mới</label>
-                <span class="file-count" id="fileCount">0 ảnh đã chọn</span>
+    <div class="form-wrapper">
+        <!-- Phần 7 (70% width) -->
+        <div class="form-main">
+            <div class="tab-nav">
+                <button class="tab-btn active" data-tab="profile">Hồ sơ</button>
+                <button class="tab-btn" data-tab="intro">Giới thiệu</button>
+                <button class="tab-btn" data-tab="log">Nhật ký</button>
             </div>
-            <div class="error-message" id="productImagesError"></div>
-            <div class="image-preview" id="imagePreview"></div>
+            <div class="tab-content">
+                <div id="profile-tab" class="tab-pane active">
+                    <!-- Hồ sơ -->
+                    <div class="form-group">
+                        <label for="productName">Tên sản phẩm <span class="required">*</span></label>
+                        <input type="text" id="productName" name="productName" placeholder="Nhập tên sản phẩm" required>
+                        <div class="error-message" id="productNameError">Tên sản phẩm không được để trống.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice">Giá bán <span class="required">*</span></label>
+                        <input type="text" id="productPrice" name="productPrice" placeholder="Nhập giá bán" required>
+                        <div class="error-message" id="productPriceError">Giá bán không được để trống.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productDescription">Mô tả <span class="required">*</span></label>
+                        <div id="productDescription" class="description-editor"></div>
+                        <div class="error-message" id="productDescriptionError">Mô tả không được để trống.</div>
+                    </div>
+                    <div class="form-group">
+                        <label>Loại hàng hóa <span class="required">*</span></label>
+                        <div class="group-box">
+                            <div class="form-group">
+                                <label for="categoryChapter">Chương</label>
+                                <select id="categoryChapter" name="categoryChapter" required>
+                                    <option value="">Chọn Chương</option>
+                                    <option value="Chương 1">Chương 1</option>
+                                    <option value="Chương 2">Chương 2</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="categoryGroup">Nhóm</label>
+                                <select id="categoryGroup" name="categoryGroup" required>
+                                    <option value="">Chọn Nhóm</option>
+                                    <option value="Nhóm 1">Nhóm 1</option>
+                                    <option value="Nhóm 2">Nhóm 2</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="categorySubgroup">Phân nhóm</label>
+                                <select id="categorySubgroup" name="categorySubgroup" required>
+                                    <option value="">Chọn Phân nhóm</option>
+                                    <option value="Phân nhóm 1">Phân nhóm 1</option>
+                                    <option value="Phân nhóm 2">Phân nhóm 2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Trạng thái <span class="required">*</span></label>
+                        <select id="productStatus" name="productStatus">
+                            <option value="active">Hoạt động</option>
+                            <option value="inactive">Không hoạt động</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nghiệp vụ tự động <span class="required">*</span></label>
+                        <div class="group-box">
+                            <table class="table">
+                                <tr>
+                                    <th>Tên thuộc tính</th>
+                                    <th>Đơn vị tính</th>
+                                    <th>Giá trị</th>
+                                </tr>
+                                <tr>
+                                    <td>Thời điểm chuyển kích hoạt</td>
+                                    <td>Giờ (h)</td>
+                                    <td><input type="text" class="auto-task-value" data-index="0" placeholder="Nhập giá trị"></td>
+                                </tr>
+                                <tr>
+                                    <td>Chuyển bán tự động</td>
+                                    <td>Giờ (h)</td>
+                                    <td><input type="text" class="auto-task-value" data-index="1" placeholder="Nhập giá trị"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Thuộc tính cơ bản <span class="required">*</span></label>
+                        <div class="group-box">
+                            <table class="table" id="basicAttrsTable">
+                                <tr>
+                                    <th>Tên thuộc tính</th>
+                                    <th>Đơn vị tính</th>
+                                    <th>Giá trị</th>
+                                    <th>Loại thuộc tính</th>
+                                    <th>Bắt buộc</th>
+                                    <th>Hành động</th>
+                                </tr>
+                                <tr class="default-row">
+                                    <td>Hạn sử dụng</td>
+                                    <td>
+                                        <select class="basic-attr-unit" required>
+                                            <option value="">Chọn đơn vị</option>
+                                            <option value="Giờ">Giờ</option>
+                                            <option value="Ngày">Ngày</option>
+                                            <option value="Tuần">Tuần</option>
+                                            <option value="Tháng">Tháng</option>
+                                            <option value="Năm">Năm</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="text" class="basic-attr-value" placeholder="Nhập giá trị" required></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <button type="button" id="addBasicAttrRow">Thêm dòng</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="intro-tab" class="tab-pane">
+                    <!-- Giới thiệu -->
+                    <div class="form-group">
+                        <label>Bài viết giới thiệu <span class="required">*</span></label>
+                        <div class="group-box">
+                            <div id="introContent" class="description-editor"></div>
+                            <div class="error-message" id="introContentError">Bài viết giới thiệu không được để trống.</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="productVideo">Video (Đường dẫn YouTube) <span class="required">*</span></label>
+                        <input type="text" id="productVideo" name="productVideo" placeholder="Nhập đường dẫn YouTube" required>
+                        <div class="error-message" id="productVideoError">Đường dẫn video không được để trống.</div>
+                    </div>
+                </div>
+                <div id="log-tab" class="tab-pane">
+                    <!-- Nhật ký -->
+                    <div class="form-group">
+                        <label>Bài viết nhật ký <span class="required">*</span></label>
+                        <div class="group-box">
+                            <div id="logContent" class="description-editor"></div>
+                            <div class="error-message" id="logContentError">Bài viết nhật ký không được để trống.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Trạng thái -->
-        <div class="form-group">
-            <label for="productStatus">Trạng thái <span class="required">*</span></label>
-            <select id="productStatus" name="productStatus">
-                <option value="active">Hoạt động</option>
-                <option value="inactive">Không hoạt động</option>
-            </select>
+        <!-- Phần 3 (30% width) -->
+        <div class="form-sidebar">
+            <div class="sidebar-section">
+                <h3>Ảnh sản phẩm</h3>
+                <div class="custom-file-input">
+                    <input type="file" id="productImages" accept="image/*" multiple>
+                    <label for="productImages" class="file-label">Chọn ảnh mới</label>
+                    <span class="file-count" id="fileCount">0 ảnh đã chọn</span>
+                </div>
+                <div class="error-message" id="productImagesError"></div>
+                <div class="image-preview" id="imagePreview"></div>
+            </div>
         </div>
+    </div>
 
-        <!-- Nút Submit và Quay lại -->
-        <div style="display: flex; gap: 16px; margin-top: 20px;">
-            <button type="button" class="submit-button back-button">Quay lại</button>
-            <button type="submit" class="submit-button">Xác nhận</button>
-        </div>
-        <div class="required-label">(<span class="required">*</span>) Trường bắt buộc</div>
-    </form>
-    <div id="resultMessage"></div>
+    <!-- Nút Submit và Quay lại -->
+    <div style="display: flex; gap: 16px; margin-top: 20px;">
+        <button type="button" class="submit-button back-button">Quay lại</button>
+        <button type="submit" class="submit-button" form="editProductForm">Xác nhận</button>
+    </div>
+    <div class="required-label">(<span class="required">*</span>) Trường bắt buộc</div>
 </div>
+<div id="resultMessage"></div>

@@ -1,137 +1,151 @@
 (function () {
+    // Load QRCode.js
+    const qrScript = document.createElement('script');
+    qrScript.src = 'https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js';
+    document.head.appendChild(qrScript);
+
     // Dữ liệu giả định
     const product = {
-        name: "Sản phẩm A",
-        description: "<p>Đây là mô tả chi tiết về sản phẩm A. Sản phẩm này có chất lượng cao và được sản xuất theo tiêu chuẩn SPCCCN.</p>",
+        id: "https://v5.xts.vn/p/WHRCSV-00000001", // Link cho mã QR
+        name: "Sản phẩm 123",
+        price: "100,000 VNĐ",
+        description: "<p>Đây là mô tả chi tiết về sản phẩm 123. Sản phẩm này có chất lượng cao và được sản xuất theo tiêu chuẩn SPCCCN.</p>",
+        category: {
+            chapter: "Chương",
+            group: "Nhóm",
+            subgroup: "Phân nhóm"
+        },
+        autoTasks: [
+            { name: "Thời điểm chuyển kích hoạt", unit: "Giờ (h)", value: "3" },
+            { name: "Chuyển bán tự động", unit: "Giờ (h)", value: "3" }
+        ],
+        basicAttrs: [
+            { name: "Hạn sử dụng", unit: "Ngày", value: "3", type: "Thiết lập", required: "Bắt buộc" },
+            { name: "Khối lượng", unit: "Kg", value: "100", type: "Thiết lập", required: "Bắt buộc" }
+        ],
         images: [
             "https://xacthucso.s3.ap-southeast-1.amazonaws.com/be5ce2aa-2262-11f0-9602-f2202b293748",
             "https://xacthucso.s3.ap-southeast-1.amazonaws.com/35de6f36-1c0a-11f0-9602-f2202b293748",
             "https://xacthucso.s3.ap-southeast-1.amazonaws.com/35de6f34-1c0a-11f0-9602-f2202b293748"
         ],
-        status: "active",
-        createdBy: "Nguyễn Văn A",
-        createdDate: "2025-05-01"
+        status: "Đang hoạt động",
+        createdBy: "Phương Xác Thục 56",
+        createdDate: "19/04/2025 10:39:44",
+        intro: "Bài viết giới thiệu sản phẩm...",
+        video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        log: "Bài viết nhật ký sản phẩm..."
     };
 
     // Hiển thị dữ liệu
     function displayProductDetails() {
-        document.getElementById('productName').textContent = product.name;
-        document.getElementById('productDescription').innerHTML = product.description;
-        document.getElementById('productStatus').textContent = product.status === 'active' ? 'Hoạt động' : 'Không hoạt động';
-        document.getElementById('createdBy').textContent = product.createdBy;
-        document.getElementById('createdDate').textContent = product.createdDate;
+        // Phần sidebar
+        document.getElementById('sidebarImagePreview').innerHTML = product.images.map(img => `<img src="${img}" alt="Product Image">`).join('');
+        document.getElementById('sidebarStatus').textContent = product.status;
+        document.getElementById('sidebarCreatedBy').textContent = product.createdBy;
+        document.getElementById('sidebarCreatedDate').textContent = product.createdDate;
 
-        renderImages();
-    }
+        // Phần tab
+        displayProfileTab();
+        displayIntroTab();
+        displayLogTab();
 
-    // Hiển thị ảnh
-    function renderImages() {
-        const imagePreview = document.getElementById('imagePreview');
-        imagePreview.innerHTML = '';
-
-        product.images.forEach((imageUrl, index) => {
-            const imageItem = document.createElement('div');
-            imageItem.classList.add('image-item');
-            imageItem.innerHTML = `
-                <input type="checkbox" class="image-checkbox" data-index="${index}">
-                <img src="${imageUrl}" alt="Product Image ${index + 1}">
-            `;
-            imagePreview.appendChild(imageItem);
-
-            // Thêm sự kiện preview
-            imageItem.querySelector('img').addEventListener('click', () => {
-                console.log('Image clicked:', imageUrl); // Debug
-                showImagePreview(imageUrl);
+        // Xử lý tab navigation
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(`${btn.dataset.tab}-tab`).classList.add('active');
             });
-
-            // Thêm sự kiện chọn ảnh
-            imageItem.querySelector('.image-checkbox').addEventListener('change', updateDownloadSelectedButton);
         });
     }
 
-    // Hiển thị modal preview
-    function showImagePreview(imageUrl) {
-        console.log('Showing preview for:', imageUrl); // Debug
-        const modal = document.createElement('div');
-        modal.classList.add('modal', 'active'); // Đảm bảo modal hiển thị
-        modal.innerHTML = `
-            <div class="modal-content">
-                <span class="close-modal">×</span>
-                <img src="${imageUrl}" alt="Preview Image">
+    // Hiển thị tab Hồ sơ
+    function displayProfileTab() {
+        const profileTab = document.getElementById('profile-tab');
+        profileTab.innerHTML = `
+            <p><strong>Tên sản phẩm:</strong> ${product.name}</p>
+            <p><strong>Giá bán:</strong> ${product.price}</p>
+            <p><strong>Mô tả:</strong> <div class="description-content">${product.description}</div></p>
+            <p><strong>Mã truyền thông:</strong></p>
+            <div id="qrCode"></div>
+            <div class="group-box">
+                <h3>Loại hàng hóa</h3>
+                <ul class="category-list">
+                    <li><strong>Chương:</strong> ${product.category.chapter}</li>
+                    <li><strong>Nhóm:</strong> ${product.category.group}</li>
+                    <li><strong>Phân nhóm:</strong> ${product.category.subgroup}</li>
+                </ul>
+            </div>
+            <div class="group-box">
+                <h3>Nghiệp vụ tự động</h3>
+                <table class="table">
+                    <tr><th>Tên thuộc tính</th><th>Đơn vị tính</th><th>Giá trị</th></tr>
+                    ${product.autoTasks.map(attr => `<tr><td>${attr.name}</td><td>${attr.unit}</td><td>${attr.value}</td></tr>`).join('')}
+                </table>
+            </div>
+            <div class="group-box">
+                <h3>Thuộc tính cơ bản</h3>
+                <table class="table">
+                    <tr><th>Tên thuộc tính</th><th>Đơn vị tính</th><th>Giá trị</th><th>Loại thuộc tính</th><th>Bắt buộc</th></tr>
+                    ${product.basicAttrs.map(attr => `<tr><td>${attr.name}</td><td>${attr.unit}</td><td>${attr.value}</td><td>${attr.type}</td><td>${attr.required}</td></tr>`).join('')}
+                </table>
             </div>
         `;
-        document.body.appendChild(modal);
 
-        modal.querySelector('.close-modal').addEventListener('click', () => {
-            document.body.removeChild(modal);
-        });
+        // Đảm bảo mã QR được tạo sau khi thư viện tải xong
+        qrScript.onload = () => {
+            setTimeout(() => {
+                const qrCodeDiv = document.getElementById('qrCode');
+                if (qrCodeDiv) {
+                    new QRCode(qrCodeDiv, {
+                        text: product.id,
+                        width: 100,
+                        height: 100,
+                        colorDark: "#000000",
+                        colorLight: "#ffffff",
+                        correctLevel: QRCode.CorrectLevel.H
+                    });
 
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                document.body.removeChild(modal);
-            }
-        });
+                    // Thêm sự kiện download QR code
+                    const qrCanvas = qrCodeDiv.querySelector('canvas');
+                    if (qrCanvas) {
+                        const downloadLink = document.createElement('a');
+                        downloadLink.href = qrCanvas.toDataURL('image/png');
+                        downloadLink.download = 'qrcode.png';
+                        downloadLink.textContent = 'Tải về mã QR';
+                        downloadLink.style.display = 'block';
+                        downloadLink.style.fontSize = '14px';
+                        downloadLink.style.color = '#4a90e2';
+                        downloadLink.style.marginTop = '8px';
+                        qrCodeDiv.appendChild(downloadLink);
+                    }
+                }
+            }, 100); // Delay nhỏ để đảm bảo DOM sẵn sàng
+        };
     }
 
-    // Cập nhật trạng thái nút "Tải về ảnh đã chọn"
-    function updateDownloadSelectedButton() {
-        const selectedCheckboxes = document.querySelectorAll('.image-checkbox:checked');
-        const downloadSelectedBtn = document.querySelector('.download-selected');
-        downloadSelectedBtn.disabled = selectedCheckboxes.length === 0;
+    // Hiển thị tab Giới thiệu
+    function displayIntroTab() {
+        const introTab = document.getElementById('intro-tab');
+        introTab.innerHTML = `
+            <div class="group-box">
+                <h3>Bài viết giới thiệu</h3>
+                <div class="article-content">${product.intro}</div>
+            </div>
+            <p><strong>Video:</strong> <iframe src="${product.video}" frameborder="0" allowfullscreen></iframe></p>
+        `;
     }
 
-    // Xử lý tải về ảnh
-    function handleDownload() {
-        const downloadAllBtn = document.querySelector('.download-all');
-        const downloadSelectedBtn = document.querySelector('.download-selected');
-
-        downloadAllBtn.addEventListener('click', async () => {
-            for (let index = 0; index < product.images.length; index++) {
-                const imageUrl = product.images[index];
-                try {
-                    const response = await fetch(imageUrl);
-                    const blob = await response.blob();
-                    const url = window.URL.createObjectURL(blob);
-                    const link = document.createElement('a');
-                    link.href = url;
-                    link.download = `product_image_${index + 1}.png`; // Thêm đuôi .png
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    window.URL.revokeObjectURL(url);
-                    // Thêm delay để tránh xung đột tải về
-                    await new Promise(resolve => setTimeout(resolve, 500));
-                } catch (error) {
-                    console.error('Lỗi khi tải ảnh:', imageUrl, error);
-                }
-            }
-            alert('Tất cả ảnh đã được tải về!');
-        });
-
-        downloadSelectedBtn.addEventListener('click', async () => {
-            const selectedCheckboxes = document.querySelectorAll('.image-checkbox:checked');
-            for (let checkbox of selectedCheckboxes) {
-                const index = parseInt(checkbox.getAttribute('data-index'));
-                const imageUrl = product.images[index];
-                try {
-                    const response = await fetch(imageUrl);
-                    const blob = await response.blob();
-                    const url = window.URL.createObjectURL(blob);
-                    const link = document.createElement('a');
-                    link.href = url;
-                    link.download = `selected_product_image_${index + 1}.png`; // Thêm đuôi .png
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    window.URL.revokeObjectURL(url);
-                    // Thêm delay để tránh xung đột tải về
-                    await new Promise(resolve => setTimeout(resolve, 500));
-                } catch (error) {
-                    console.error('Lỗi khi tải ảnh:', imageUrl, error);
-                }
-            }
-            alert('Ảnh đã chọn đã được tải về!');
-        });
+    // Hiển thị tab Nhật ký
+    function displayLogTab() {
+        const logTab = document.getElementById('log-tab');
+        logTab.innerHTML = `
+            <div class="group-box">
+                <h3>Bài viết nhật ký</h3>
+                <div class="article-content">${product.log}</div>
+            </div>
+        `;
     }
 
     // Xử lý nút Quay lại
@@ -156,7 +170,6 @@
 
     // Khởi động các chức năng
     displayProductDetails();
-    handleDownload();
     handleBackButton();
     handleEditButton();
 })();

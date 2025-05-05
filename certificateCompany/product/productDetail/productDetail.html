@@ -1,52 +1,46 @@
 <div class="detail-container">
     <h1>Chi tiết sản phẩm</h1>
-    <div class="detail-content">
-        <!-- Tên sản phẩm -->
-        <div class="detail-item">
-            <label>Tên sản phẩm:</label>
-            <span id="productName">Sản phẩm A</span>
-        </div>
-
-        <!-- Mô tả -->
-        <div class="detail-item">
-            <label>Mô tả:</label>
-            <div id="productDescription" class="description-content"></div>
-        </div>
-
-        <!-- Ảnh -->
-        <div class="detail-item">
-            <label>Ảnh:</label>
-            <div class="image-section">
-                <div class="image-preview" id="imagePreview"></div>
-                <div class="image-actions">
-                    <button class="action-btn download-all">Tải về tất cả</button>
-                    <button class="action-btn download-selected">Tải về ảnh đã chọn</button>
+    <div class="detail-wrapper">
+        <!-- Phần 7 (70% width) -->
+        <div class="detail-main">
+            <div class="tab-nav">
+                <button class="tab-btn active" data-tab="profile">Hồ sơ</button>
+                <button class="tab-btn" data-tab="intro">Giới thiệu</button>
+                <button class="tab-btn" data-tab="log">Nhật ký</button>
+            </div>
+            <div class="tab-content">
+                <div id="profile-tab" class="tab-pane active">
+                    <!-- Hồ sơ content will be populated by JS -->
+                </div>
+                <div id="intro-tab" class="tab-pane">
+                    <!-- Giới thiệu content will be populated by JS -->
+                </div>
+                <div id="log-tab" class="tab-pane">
+                    <!-- Nhật ký content will be populated by JS -->
                 </div>
             </div>
         </div>
 
-        <!-- Trạng thái -->
-        <div class="detail-item">
-            <label>Trạng thái:</label>
-            <span id="productStatus">Hoạt động</span>
+        <!-- Phần 3 (30% width) -->
+        <div class="detail-sidebar">
+            <div class="sidebar-section">
+                <h3>Ảnh sản phẩm</h3>
+                <div class="image-preview" id="sidebarImagePreview"></div>
+            </div>
+            <div class="sidebar-section">
+                <h3>Thông tin trạng thái</h3>
+                <div class="status-info">
+                    <p><strong>Trạng thái:</strong> <span id="sidebarStatus"></span></p>
+                    <p><strong>Người tạo:</strong> <span id="sidebarCreatedBy"></span></p>
+                    <p><strong>Thời gian tạo:</strong> <span id="sidebarCreatedDate"></span></p>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <!-- Người tạo -->
-        <div class="detail-item">
-            <label>Người tạo:</label>
-            <span id="createdBy">Nguyễn Văn A</span>
-        </div>
-
-        <!-- Ngày tạo -->
-        <div class="detail-item">
-            <label>Ngày tạo:</label>
-            <span id="createdDate">2025-05-01</span>
-        </div>
-
-        <!-- Nút Quay lại và Sửa -->
-        <div style="display: flex; gap: 16px;">
-            <button class="action-btn back-button">Quay lại</button>
-            <button class="action-btn edit-button">Sửa</button>
-        </div>
+    <!-- Nút Quay lại và Sửa -->
+    <div style="display: flex; gap: 16px; margin-top: 20px;">
+        <button class="action-btn back-button">Quay lại</button>
+        <button class="action-btn edit-button">Sửa</button>
     </div>
 </div>
