@@ -1,0 +1,38 @@
+<div class="form-container">
+    <h1>Thêm mới sản phẩm</h1>
+    <form id="addProductForm">
+        <!-- Tên sản phẩm -->
+        <div class="form-group">
+            <label for="productName">Tên sản phẩm <span class="required">*</span></label>
+            <input type="text" id="productName" name="productName" placeholder="Nhập tên sản phẩm" required>
+            <div class="error-message" id="productNameError">Tên sản phẩm không được để trống.</div>
+        </div>
+
+        <!-- Mô tả -->
+        <div class="form-group">
+            <label for="productDescription">Mô tả <span class="required">*</span></label>
+            <div id="productDescription" class="description-editor"></div>
+            <div class="error-message" id="productDescriptionError">Mô tả không được để trống.</div>
+        </div>
+
+        <!-- Ảnh -->
+        <div class="form-group">
+            <label>Ảnh sản phẩm (Tối đa 10 ảnh)</label>
+            <div class="custom-file-input">
+                <input type="file" id="productImages" accept="image/*" multiple>
+                <label for="productImages" class="file-label">Chọn ảnh</label>
+                <span class="file-count" id="fileCount">0 ảnh đã chọn</span>
+            </div>
+            <div class="error-message" id="productImagesError"></div>
+            <div class="image-preview" id="imagePreview"></div>
+        </div>
+
+        <!-- Nút Submit và Quay lại -->
+        <div style="display: flex; gap: 16px; margin-top: 20px;">
+            <button type="button" class="submit-button back-button">Quay lại</button>
+            <button type="submit" class="submit-button">Xác nhận</button>
+        </div>
+        <div class="required-label">(<span class="required">*</span>) Trường bắt buộc</div>
+    </form>
+    <div id="resultMessage"></div>
+</div>

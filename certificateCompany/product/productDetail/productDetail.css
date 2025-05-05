@@ -1,0 +1,238 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.detail-container {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+    width: 100%; /* Chiếm toàn bộ width của content-area */
+    margin: 0 auto;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Heading */
+h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+/* Detail Content */
+.detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.detail-item label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    min-width: 120px;
+}
+
+.detail-item span {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Description Content */
+.description-content {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px;
+    background: #f9f9f9;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Image Section */
+.image-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.image-item {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid transparent;
+}
+
+.image-item:hover img {
+    border-color: #4a90e2;
+}
+
+.image-item input[type="checkbox"] {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+}
+
+/* Image Actions */
+.image-actions {
+    display: flex;
+    gap: 12px;
+}
+
+/* Action Buttons */
+.action-btn {
+    flex: 1; /* Đảm bảo các nút có kích thước đều nhau */
+    padding: 10px 16px;
+    background: #4a90e2;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+
+.action-btn:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.back-button {
+    background: #7f8c8d;
+}
+
+.back-button:hover {
+    background: #6c757d;
+}
+
+.edit-button {
+    background: #f1c40f;
+}
+
+.edit-button:hover {
+    background: #d4ac0d;
+}
+
+/* Modal for Image Preview */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.active {
+    display: flex; /* Đảm bảo modal hiển thị */
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.modal-content img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .detail-container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .detail-item label {
+        font-size: 13px;
+        min-width: 100px;
+    }
+
+    .detail-item span {
+        font-size: 13px;
+    }
+
+    .image-item {
+        width: 80px;
+        height: 80px;
+    }
+
+    .action-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 400px) {
+    .detail-container {
+        padding: 16px;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+
+    .image-item {
+        width: 70px;
+        height: 70px;
+    }
+}

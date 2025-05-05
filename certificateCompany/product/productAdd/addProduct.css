@@ -1,0 +1,261 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.form-container {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+    width: 100%; /* Chiếm toàn bộ width của content-area */
+    /* max-width: 1000px; Tăng max-width để phù hợp với layout */
+    margin: 0 auto;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Heading */
+h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+/* Description Editor */
+.description-editor {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    min-height: 150px;
+}
+
+.description-editor .ql-editor {
+    min-height: 120px;
+    font-size: 14px;
+}
+
+/* Custom File Input */
+.custom-file-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.custom-file-input input[type="file"] {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+.custom-file-input .file-label {
+    padding: 8px 16px;
+    background: #f0f0f0;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.custom-file-input .file-label:hover {
+    background: #e0e0e0;
+}
+
+.custom-file-input .file-count {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Image Preview */
+.image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.image-item {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid transparent;
+}
+
+.image-item input[type="radio"]:checked + img {
+    border-color: #4a90e2;
+}
+
+.image-item .remove-image {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.image-item .remove-image:hover {
+    background: #c0392b;
+}
+
+/* Error Message */
+.error-message {
+    display: none;
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* Submit Button */
+.submit-button {
+    flex: 1;
+    padding: 14px;
+    background: #4a90e2;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.back-button {
+    background: #7f8c8d;
+}
+
+.back-button:hover {
+    background: #6c757d;
+    transform: translateY(-2px);
+}
+
+.submit-button:hover {
+    background: #357abd;
+    transform: translateY(-2px);
+}
+
+.submit-button:active,
+.back-button:active {
+    transform: translateY(0);
+}
+
+/* Required Label */
+.required-label {
+    font-size: 12px;
+    color: #666;
+    margin-top: 12px;
+    text-align: center;
+}
+
+.required {
+    color: #e74c3c;
+}
+
+/* Result Message */
+#resultMessage {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .form-group input[type="text"] {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .submit-button,
+    .back-button {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .image-item {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 400px) {
+    .form-container {
+        padding: 16px;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .image-item {
+        width: 70px;
+        height: 70px;
+    }
+}

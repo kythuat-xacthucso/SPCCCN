@@ -1,0 +1,245 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container */
+.products-container {
+    width: 100%; /* Chiếm toàn bộ width của content-area */
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Heading */
+h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+/* Table */
+.products-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Table Header */
+.table-header {
+    display: flex;
+    background: #f5f7fa;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    padding: 12px 0;
+}
+
+.table-header .table-cell {
+    flex: 1;
+    text-align: center;
+}
+
+.table-header .table-cell:first-child {
+    flex: 0.5; /* STT nhỏ hơn */
+}
+
+.table-header .table-cell:last-child {
+    flex: 1.5; /* Actions rộng hơn */
+}
+
+/* Table Body */
+.table-body {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.table-row {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 12px 0;
+    font-size: 14px;
+    color: #333;
+    transition: background 0.3s;
+}
+
+.table-row:hover {
+    background: #f9f9f9;
+}
+
+.table-row .table-cell {
+    flex: 1;
+    text-align: center;
+}
+
+.table-row .table-cell:first-child {
+    flex: 0.5; /* STT nhỏ hơn */
+}
+
+.table-row .table-cell:last-child {
+    flex: 1.5; /* Actions rộng hơn */
+}
+
+/* Status */
+.status {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status.active {
+    background: #e0f7e9;
+    color: #2ecc71;
+}
+
+.status.inactive {
+    background: #ffebeb;
+    color: #e74c3c;
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.action-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.action-btn.view {
+    background: #4a90e2;
+    color: white;
+}
+
+.action-btn.edit {
+    background: #f1c40f;
+    color: white;
+}
+
+.action-btn.delete {
+    background: #e74c3c;
+    color: white;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .products-container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    /* Chuyển bảng sang dạng card trên mobile */
+    .table-header {
+        display: none; /* Ẩn header trên mobile */
+    }
+
+    .table-body {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-height: none;
+    }
+
+    .table-row {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 16px;
+        background: #fff;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .table-row .table-cell {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4px 0;
+        text-align: left;
+        flex: none;
+    }
+
+    .table-row .table-cell::before {
+        content: attr(data-label);
+        font-weight: 500;
+        color: #666;
+    }
+
+    .table-row .table-cell:first-child::before {
+        content: "STT";
+    }
+
+    .table-row .table-cell:nth-child(2)::before {
+        content: "Tên sản phẩm";
+    }
+
+    .table-row .table-cell:nth-child(3)::before {
+        content: "Trạng thái";
+    }
+
+    .table-row .table-cell:nth-child(4)::before {
+        content: "Ngày tạo";
+    }
+
+    .table-row .table-cell:last-child::before {
+        content: "Actions";
+    }
+}
+
+@media (max-width: 400px) {
+    .products-container {
+        padding: 16px;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+
+    .table-row {
+        padding: 12px;
+    }
+
+    .table-row .table-cell {
+        font-size: 13px;
+    }
+
+    .action-btn {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+}
